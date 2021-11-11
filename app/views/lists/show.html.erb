@@ -1,0 +1,37 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://observer.com/wp-content/uploads/sites/2/2021/05/summer-movies-2021-new-e1620919489437.jpg?quality=80);">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+  </div>
+</div>
+
+<div class="cards m-3">
+  <% @bookmarks.each do |mark| %>
+    <div class="card-trip">
+      <img src="https://static.posters.cz/image/350/posters/avengers-infinity-war-one-sheet-i58560.jpg" />
+      <div class="card-trip-infos">
+        <div>
+          <h2><%= mark.movie.title %></h2>
+          <p><%= mark.movie.overview %></p>
+        </div>
+        <%= link_to bookmark_path(mark), method: :delete , data: {confirm: "Are you sure?"}, class: "card-remove-link" do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :comment %>
+    <%= f.input :movie, collection: Movie.names %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back to Lists', lists_path %>
