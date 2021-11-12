@@ -1,9 +1,16 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_tag @list.photo.key, crop: :fill %>');">
-  <div class="container">
-    <h1><%= @list.name %></h1>
+<% if @list.photo.attached? %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path(@list.photo.key) %>');">
+    <div class="container">
+      <h1><%= @list.name %></h1>
+    </div>
   </div>
-</div>
-
+<% else %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://res.cloudinary.com/dtmaygdvz/image/upload/v1636715511/pehg3ipznuehbwtlfaks.jpg');">
+    <div class="container">
+      <h1><%= @list.name %></h1>
+    </div>
+  </div>
+<% end %>
 <%# FORM %>
 
 <div class="text-right m-3">
@@ -41,15 +48,17 @@
 <div class="cards m-3">
   <% @bookmarks.each do |mark| %>
     <div class="card-trip">
-      <img src="https://static.posters.cz/image/350/posters/avengers-infinity-war-one-sheet-i58560.jpg" />
+      <img src='<%= mark.movie.poster_url %>'/>
       <div class="card-trip-infos">
         <div>
           <h2><%= mark.movie.title %></h2>
           <p><%= mark.movie.overview %></p>
         </div>
-        <%= link_to bookmark_path(mark), method: :delete , data: {confirm: "Are you sure?"}, class: "card-remove-link" do %>
-          <i class="fas fa-trash"></i>
-        <% end %>
+        <div>
+          <%= link_to bookmark_path(mark), method: :delete , data: {confirm: "Are you sure?"}, class: "card-remove-link" do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
