@@ -11,7 +11,7 @@
   <h3 align="center">Watchlist</h3>
 
   <p align="center">
-    Easily create watch lists and add movies to them.
+    Create watch lists and add movies to them.
     <br />
     <a href="https://github.com/tin2294/Watchlist"><strong>Explore the docs »</strong></a>
     <br />
@@ -35,7 +35,7 @@
 ## About The Project
 
 <img align="center" src="app/assets/land.png">
-
+<br>
 This app allows you to create new watch lists and attach a picture for each of them. Then, you can also add movies from a list to each of those lists along with a comment.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
